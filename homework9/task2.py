@@ -1,71 +1,82 @@
 class QAEngineer:
     """
-    A class representing a Quality Assurance (QA) Engineer.
-
-    Attributes:
-        name (str): The name of the QA engineer.
-        experience (int): The years of experience in QA testing.
-        skills (list): A list of technical skills possessed by the QA engineer.
-
-    Methods:
-        __init__(self, name, experience, skills): Initializes a new QAEngineer object.
-        get_name(self): Returns the name of the QA engineer.
-        get_experience(self): Returns the years of experience.
-        get_skills(self): Returns the list of technical skills.
-        introduce(self): Prints an introduction message about the QA engineer.
+    Клас, що представляє QA інженера.
     """
 
-    def __init__(self, name, experience, skills):
-        """
-        Initializes a new QAEngineer object.
+    # Атрибути класу
+    _employee_count = 0  # Приватний атрибут, який зберігає кількість QA інженерів
 
-        Args:
-            name (str): The name of the QA engineer.
-            experience (int): The years of experience in QA testing.
-            skills (list): A list of technical skills possessed by the QA engineer.
+    def __init__(self, name, experience):
         """
-        self.name = name
-        self.experience = experience
-        self.skills = skills
+        Конструктор класу QAEngineer.
 
-    def get_name(self):
+        :param name: Ім'я QA інженера.
+        :param experience: Рівень досвіду QA інженера (у роках).
         """
-        Returns the name of the QA engineer.
+        self._name = name  # Атрибут класу зі змінним доступом (protected)
+        self.__experience = experience  # Приватний атрибут
 
-        Returns:
-            str: The name of the QA engineer.
-        """
-        return self.name
+        QAEngineer._employee_count += 1  # Збільшуємо кількість QA інженерів при створенні нового об'єкта
 
-    def get_experience(self):
+    @property
+    def name(self):
         """
-        Returns the years of experience.
+        Getter для імені QA інженера.
 
-        Returns:
-            int: The years of experience in QA testing.
+        :return: Ім'я QA інженера.
         """
-        return self.experience
+        return self._name
 
-    def get_skills(self):
+    @name.setter
+    def name(self, value):
         """
-        Returns the list of technical skills.
+        Setter для імені QA інженера.
 
-        Returns:
-            list: A list of technical skills possessed by the QA engineer.
+        :param value: Нове ім'я QA інженера.
         """
-        return self.skills
+        self._name = value
 
-    def introduce(self):
+    @staticmethod
+    def get_employee_count():
         """
-        Prints an introduction message about the QA engineer.
-        """
-        print(f"Hello, I'm {self.name}, a QA Engineer with {self.experience} years of experience.")
-        print("My technical skills include:")
-        for skill in self.skills:
-            print(f"- {skill}")
+        Статичний метод для отримання загальної кількості QA інженерів.
 
-# Example usage:
+        :return: Загальна кількість QA інженерів.
+        """
+        return QAEngineer._employee_count
+
+    def _perform_testing(self, test_case):
+        """
+        Захищений метод для виконання тестування.
+
+        :param test_case: Назва тестового випробування.
+        """
+        print(f"{self._name} виконує тестування для '{test_case}'")
+
+    def __str__(self):
+        """
+        Перевизначений метод для представлення об'єкту як рядка.
+
+        :return: Рядок, що містить ім'я та рівень досвіду QA інженера.
+        """
+        return f"{self._name}, Досвід: {self.__experience} років"
+
+
+# Приклад використання класу QAEngineer
 if __name__ == "__main__":
-    qa_engineer = QAEngineer("Yevheniia", 1, ["Manual Testing", "Automation Testing", "Test Planning"])
-    qa_engineer.introduce()
+    qa1 = QAEngineer("Анна", 5)
+    qa2 = QAEngineer("Євгенія", 1)
+
+    print(qa1.name)  # Використовуємо getter
+    qa1.name = "Марія"  # Використовуємо setter
+    print(qa1.name)
+
+    qa1._perform_testing("Реєстрація")  # Викликаємо захищений метод
+
+    print(qa1)
+    print(qa2)
+
+    print("Загальна кількість QA інженерів:", QAEngineer.get_employee_count())
+
+
 
