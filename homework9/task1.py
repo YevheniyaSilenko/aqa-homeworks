@@ -83,4 +83,4 @@ if __name__ == "__main__":
 
     print(ferrari1)
 
-    print(f"Total Ferrari cars created: {Ferrari.get_total_ferraris()}")
+    print(f"Total Ferrari cars created: {Ferrari.get_total_ferraris()}"
