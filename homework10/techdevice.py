@@ -10,37 +10,59 @@ class TechDevice:
     def turn_off(self):
         print(f"{self.brand} {self.model} is turned off")
 
-# Subclass - Smartphone, inherits from TechDevice
-class Smartphone(TechDevice):
+    def get_info(self):
+        print(f"This is a {self.brand} {self.model} tech device")
+
+# Subclass - CommunicationDevice, inherits from TechDevice
+class CommunicationDevice(TechDevice):
     def make_call(self, number):
         print(f"{self.brand} {self.model} is calling number {number}")
 
     def send_text(self, number, message):
         print(f"{self.brand} {self.model} is sending a message to number {number}: {message}")
 
+# Subclass - Smartphone, inherits from CommunicationDevice
+class Smartphone(CommunicationDevice):
+    def take_photo(self):
+        print(f"{self.brand} {self.model} is taking a photo")
+
+    def browse_internet(self, website):
+        print(f"{self.brand} {self.model} is browsing the internet on {website}")
+
 # Subclass - Tablet, inherits from TechDevice
 class Tablet(TechDevice):
     def browse_web(self, url):
         print(f"{self.brand} {self.model} is browsing the website at URL: {url}")
+
+    def play_game(self, game):
+        print(f"{self.brand} {self.model} is playing the game: {game}")
 
 # Subclass - Laptop, inherits from TechDevice
 class Laptop(TechDevice):
     def run_application(self, app_name):
         print(f"{self.brand} {self.model} is running the application: {app_name}")
 
+    def connect_wifi(self, wifi_name):
+        print(f"{self.brand} {self.model} is connecting to Wi-Fi: {wifi_name}")
+
+
 if __name__ == "__main__":
     smartphone = Smartphone("Samsung", "Galaxy S20")
     smartphone.turn_on()
     smartphone.make_call("123-456-789")
     smartphone.send_text("123-456-789", "Hello, how are you?")
+    smartphone.take_photo()
+    smartphone.browse_internet("example.com")
     smartphone.turn_off()
 
     tablet = Tablet("Apple", "iPad Pro")
     tablet.turn_on()
     tablet.browse_web("https://www.example.com")
+    tablet.play_game("Angry Birds")
     tablet.turn_off()
 
     laptop = Laptop("HP", "Pavilion")
     laptop.turn_on()
     laptop.run_application("Microsoft Word")
+    laptop.connect_wifi("MyWiFiNetwork")
     laptop.turn_off()
