@@ -5,4 +5,4 @@ email = input("input email: ")
 if '@' in email and '.' in email:
     print("YES")
 else:
-    print("NO")
+    print("NO")-ь
